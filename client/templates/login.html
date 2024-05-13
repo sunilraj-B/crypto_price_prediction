@@ -1,0 +1,62 @@
+<!-- login.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'sunilstyle.css' %}">
+</head>
+<body>
+<div class="login">
+    <video id="video1" autoplay muted loop>
+        <source src="{% static 'video1.mp4' %}" type="video/mp4" />
+    </video>
+
+    <form method="post" class="form">
+        {% csrf_token %}
+        <h1 class="head">Login</h1>
+
+        <div class="content">
+            <div class="box">
+                <i class="ri-user-3-line login__icon"></i>
+
+                <div class="box-input">
+                    <input type="text" required class="input" id="login-username" name="username" placeholder=" ">
+                    <label for="login-username" class="login__label">Username</label>
+                </div>
+            </div>
+
+            <div class="box">
+                <i class="ri-lock-2-line login__icon"></i>
+
+                <div class="box-input">
+                    <input type="password" required class="input" id="login-pass" name="password" placeholder=" ">
+                    <label for="login-pass" class="login__label">Password</label>
+                    <i class="ri-eye-off-line login__eye" id="login-eye"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="tick">
+            <div class="tick-group">
+                <input type="checkbox" class="tick-input" id="login-check" name="remember">
+                <label for="login-check" class="tick-label">Remember me</label>
+            </div>
+        </div>
+        <p>Don't have an account? <a href="{% url 'client:signup' %}">Sign Up</a></p>
+
+        <!-- Display form errors here -->
+        {% if form.errors %}
+            <p class="error">Please correct the errors below:</p>
+        {% endif %}
+
+        <button type="submit" class="button">Login</button>
+    </form>
+</div>
+
+<script src="{% static 'sunilscript.js' %}"></script>
+</body>
+</html>

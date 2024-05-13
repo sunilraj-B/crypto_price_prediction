@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Coin Table</title>
+    <!-- Use the minified version of Chart.js to avoid source map issues -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/Chart.min.js"></script>
+    <style>
+        /* Add your custom styles here */
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        th {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+        
+        td {
+            background-color: #ffffff;
+        }
+        
+        /* Hover Effect */
+        tr:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Interactive Colors */
+        .positive-change {
+            color: green;
+        }
+        
+        .negative-change {
+            color: red;
+        }
+        
+        .arrow-up {
+            color: green;
+        }
+        
+        .arrow-down {
+            color: red;
+        }
+        
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .pagination a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .pagination a:hover {
+            background-color: #0056b3;
+        }
+        
+        .go-home-button {
+            display: block;
+            margin: 20px auto; /* Center the button horizontally */
+            padding: 10px;
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .go-home-button:hover {
+            background-color:grey;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <button onclick="window.location.href='{% url 'client:update' %}'" class="go-home-button">Go to Home Page</button>
+    <h1>Crypto Table</h1>
+    <div class="pagination">
+        <a href="#" id="prevPageBtn" class="arrow-up">&#9664; Previous</a>
+        <a href="#" id="nextPageBtn" class="arrow-down">Next &#9654;</a>
+    </div>
+  
+<table data-coin-index-target="table" data-controller="coin-row-ads" data-view-component="true" class="tw-border-y tw-border-gray-200 dark:tw-border-moon-700 tw-divide-y tw-divide-gray-200 dark:tw-divide-moon-700 tw-w-full sortable">
+    <thead class="">
+        <tr>
+            <th>#</th>
+            <th>Icon</th>
+            <th>Symbol</th>
+            <th>Coin</th>
+            <th>Price (USD)</th>
+            <th>24h %</th>
+            <th>Equivalent Value (INR)</th>
+            <th>24h Volume</th>
+            <th>Market Cap</th>
+        </tr>
+    </thead>
+    <tbody id="coinTableBody">
+        <!-- Table body content will be dynamically added here -->
+    </tbody>
+</table>
+
+<div class="pagination">
+    <a href="#" id="prevPageBtn" class="arrow-up">&#9664; Previous</a>
+    <a href="#" id="nextPageBtn" class="arrow-down">Next &#9654;</a>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Fetch exchange rate for USD to INR
+        fetch('https://api.exchangerate-api.com/v4/latest/USD')
+        .then(response => response.json())
+        .then(exchangeRateData => {
+            const usdToInrRate = exchangeRateData.rates.INR;
+            let currentPage = 1;
+
+            const fetchCoins = (page) => {
+                fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=${page}&sparkline=true`)
+                .then(response => response.json())
+                .then(coins => {
+                    const tableBody = document.getElementById('coinTableBody');
+
+                    let previous24h = coins[0].price_change_percentage_24h;
+
+                    tableBody.innerHTML = ''; // Clear previous data
+
+                    Object.values(coins).forEach((coin, index) => {
+                        console.log("Coin Object:", coin);
+                        const row = document.createElement('tr');
+                        const serialNumber = (page - 1) * 100 + index + 1;
+
+                        const formatPercentage = (percentage) => {
+                            return percentage ? percentage.toFixed(2) + '%' : 'N/A';
+                        };
+
+                        const addClassBasedOnChange = (value, previousValue) => {
+                            if (previousValue === null) {
+                                return '';
+                            }
+
+                            return value > 0 ? 'positive-change' : 'negative-change';
+                        };
+
+                        const arrowIcon = (value) => {
+                            return value > 0 ? '<span class="arrow-up">&#9650;</span>' : '<span class="arrow-down">&#9660;</span>';
+                        };
+
+                        const equivalentValueInr = (usdValue) => {
+                            const inrValue = (usdValue * usdToInrRate).toFixed(2);
+                            return `${inrValue} INR`;
+                        };
+
+                        row.innerHTML = `
+                            <td>${serialNumber}</td>
+                            <td><img src="${coin.image}" alt="${coin.name}" style="width: 20px; height: 20px;"></td>
+                            <td>${coin.symbol}</td>
+                            <td>${coin.name}</td>
+                            <td>${coin.current_price ? coin.current_price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USD' : 'N/A'}</td>
+                            <td class="${addClassBasedOnChange(coin.price_change_percentage_24h || coin.percent_change_24h || 0, previous24h)}">${arrowIcon(coin.price_change_percentage_24h || coin.percent_change_24h || 0)} ${formatPercentage(coin.price_change_percentage_24h || coin.percent_change_24h || 0)}</td>
+                            <td>${coin.current_price ? equivalentValueInr(coin.current_price) : 'N/A'}</td>
+                            <td>${coin.total_volume ? coin.total_volume.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USD' : 'N/A'}</td>
+                            <td>${coin.market_cap ? coin.market_cap.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USD' : 'N/A'}</td>
+                        `;
+
+                        // Update previous values for the next iteration
+                        previous24h = coin.price_change_percentage_24h || coin.percent_change_24h || 0;
+
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching CoinGecko data:', error));
+            };
+
+            // Initial fetch for the first page
+            fetchCoins(currentPage);
+
+            // Event listener for the next page button
+            document.getElementById('nextPageBtn').addEventListener('click', () => {
+                currentPage++;
+                fetchCoins(currentPage);
+            });
+
+            // Event listener for the previous page button
+            document.getElementById('prevPageBtn').addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    fetchCoins(currentPage);
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching exchange rate data:', error));
+    });
+</script>
+
+</body>
+</html>

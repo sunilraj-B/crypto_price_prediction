@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Price Prediction Results</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            animation: backgroundCycle 5s linear infinite alternate; /* Add background color animation */
+        }
+
+        @keyframes backgroundCycle {
+            0% {
+                background-color: #fff; /* White */
+            }
+            25% {
+                background-color: #f0f0f0; /* Light grey */
+            }
+            50% {
+                background-color: #e0e0e0; /* Medium grey */
+            }
+            75% {
+                background-color: #d0d0d0; /* Dark grey */
+            }
+            100% {
+                background-color: #fff; /* White */
+            }
+        }
+
+     
+        /* Style for the glass container */
+        .glass-container {
+            background-color: rgba(255, 255, 255, 0.7); /* Transparent grey background */
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto; /* Center the container horizontally */
+        }
+/* Adjusted styles for the content inside the glass container */
+.glass-container h1,
+.glass-container h2,
+.glass-container h3,
+.glass-container p,
+.glass-container ul,
+.glass-container li,
+.glass-container table {
+    color: #333; /* Adjust text color as needed */
+    width: 100%; /* Make the content fill the container width */
+}
+/* Increase the width of the future prediction table */
+.glass-container table {
+    margin-top: 20px;
+    width: 100%; /* Make the table take up 100% of the container width */
+}
+
+/* Adjust the width of the table cells for the future predictions */
+.glass-container th,
+.glass-container td {
+    padding: 15px; /* Adjust the padding as needed */
+}
+
+        
+        /* ... (rest of your styles) ... */
+
+        /* Style for the button */
+        .go-back-button {
+            background-color: #fff;
+            color: #000;
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        .go-back-button:hover {
+            background-color: black;
+            color: white;
+            border-color: #fff;
+        }
+        {% comment %} .glass-container table {
+            width: 100%; /* Make the table take up 100% of the container width */
+            margin-top: 15px;
+        } {% endcomment %}
+
+        header {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        h1, h2, h3 {
+            color: #000;
+            text-align: center;
+        }
+        
+        main {
+            width: 80%;
+            max-width: 800px;
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-top: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #222;
+            color: white;
+        }
+        
+        .results-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .model-results,
+        .ensemble-results,
+        .future-predictions {
+            width: 48%;
+        }
+        
+        .model-result,
+        ul {
+            margin-bottom: 20px;
+        }
+        
+        .model-result h3 {
+            color: #222;
+            text-align: center;
+        }
+        
+        a, .go-back-button {
+            color: #000;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        a:hover, .go-back-button:hover {
+            text-decoration: underline;
+        }
+        
+        /* Additional styles for a clean table appearance */
+        table {
+            border-spacing: 0;
+            border: 1px solid #ddd;
+            width=100%;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #222;
+            color: white;
+        }
+        
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        /* Style for the future predictions container */
+        .future-predictions {
+            margin: 20px;
+        }
+        
+        /* Style for the table */
+        .future-predictions table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        /* Style for table headers */
+        .future-predictions th {
+            background-color: #333;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        /* Style for table rows */
+        .future-predictions tr {
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Style for alternating row background */
+        .future-predictions tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        /* Style for table cells */
+        .future-predictions td {
+            padding: 10px;
+        }
+        
+        /* Style for the heading */
+        .future-predictions h2 {
+            color: #000;
+        }
+        .go-back-button {
+            background-color: #fff;
+            color: #000;
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        .go-back-button:hover {
+            background-color: grey;
+            color: #fff;
+            border-color: #fff;
+        }
+        #video-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            
+        }
+        
+        /* Style the video to cover the entire page */
+        #bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+        }
+        
+        /* Style content overlaying the video */
+        #content {
+            position: relative;
+            z-index: -1; /* Ensure content is above video */
+        }
+        
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    
+    <div class="glass-container">
+    <h1>Crypto Price Prediction</h1>
+    {% comment %} <a href="{% url 'crypto_predictor:select_crypto' %}" class="go-back-button">Go Back to Select Cryptocurrency</a> {% endcomment %}
+    <button class="go-back-button" onclick="window.location.href='{% url 'client:select_crypto' %}'">Go Back to Select Cryptocurrency</button>
+    <button class="go-back-button" onclick="window.location.href='{% url 'client:update' %}'">Go Back to Home Page</button>
+
+
+    <div class="ensemble-results">
+        <h2>Ensemble Approach Results</h2>
+        <p>Mean Absolute Error (MAE): {{ mae_ensemble }}</p>
+        <p>Mean Squared Error (MSE): {{ mse_ensemble }}</p>
+        <p>R-squared (R^2) Score: {{ r2_ensemble }}</p>
+        <h3>Ensemble Approach Models</h3>
+        <ul>
+            {% for ensemble_model in ensemble_models %}
+                <li>{{ ensemble_model }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <div class="future-predictions">
+        <h2>Future Price Predictions</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Predicted Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for date, predicted_price in future_results %}
+                    <tr>
+                        <td>{{ date }}</td>
+                        <td>${{ predicted_price|floatformat:2 }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="chart-container" style="width: 80%; max-width: 800px; margin-top: 20px;">
+        <canvas id="futurePredictionsChart"></canvas>
+    </div>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const predictionDates = [{% for date, _ in future_results %}"{{ date }}",{% endfor %}];
+            const predictedPrices = [{% for _, price in future_results %}{{ price|floatformat:2 }},{% endfor %}];
+    
+            const ctx = document.getElementById('futurePredictionsChart').getContext('2d');
+            const futurePredictionsChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: predictionDates,
+                    datasets: [{
+                        label: 'Predicted Prices',
+                        data: predictedPrices,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2,
+                        fill: false,
+                    }],
+                },
+                options: {
+                    scales: {
+                        x: [{
+                            type: 'time',
+                            time: {
+                                displayFormats: {
+                                    quarter: 'MMM YYYY'
+                                }
+                            }
+                        }],
+                        y: [{
+                            beginAtZero: true,
+                        }],
+                    },
+                },
+            });
+        });
+    </script>
+    
+</body>
+</html>

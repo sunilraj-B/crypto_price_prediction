@@ -1,0 +1,462 @@
+/* Reset and general styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+    background-color: #ffffff; /* Set the background color to white */
+}
+#video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+}
+
+/* Style the video to cover the entire page */
+#bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+}
+
+/* Style content overlaying the video */
+#content {
+    position: relative;
+    z-index: -1; /* Ensure content is above video */
+}
+
+/* Header Styling */
+/* Header Styling */
+header {
+    padding: 20px 0;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+    backdrop-filter: blur(10px); /* Apply a blur effect to the background */
+}
+
+h1 {
+    font-family: Cambria, serif;
+    font-size: 2.5rem;
+    text-align: center;
+    color: #333; /* Dark Grey */
+    transition: color 0.3s ease-in-out; /* Smooth color transition on hover */
+    cursor: pointer;
+}
+
+h1:hover {
+    color: #0066cc; /* A shade of blue for hover effect */
+}
+
+
+/* Navigation Styling */
+
+.navbar {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+  }
+  
+  .navbar a {
+    float: left;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .navbar a:hover {
+    background-color: #000;
+  }
+  
+  .active {
+    background-color: #04AA6D;
+  }
+  
+  @media screen and (max-width: 500px) {
+    .navbar a {
+      float: none;
+      display: block;
+    }
+  }
+
+/* Hero Section Styling */
+.hero {
+    padding: 0 3%;
+}
+
+/* Container Styling */
+#container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('your-background-image.jpg'); /* Set your background image */
+    background-size: cover;
+    backdrop-filter: blur(10px); /* Apply a blur effect to the background */
+}
+
+/* Overlay Styling */
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white overlay */
+    z-index: 1; /* Ensure the overlay is above the background image */
+}
+
+/* Table Styling */
+/* Apply table styles */
+#currencyMenu {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+  
+  /* Apply th and td styles */
+  #currencyMenu th,
+  #currencyMenu td {
+    text-align: left;
+    padding: 16px;
+  }
+  
+  /* Apply even row background color */
+  #currencyMenu tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+/* Contact Details Styling */
+.contact-details {
+    width: 100%;
+    padding: 0 3%;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-details > p {
+    padding: 0 10px;
+}
+
+/* Content Section Styling */
+.content-section {
+    padding: 0 3%;
+    text-align: justify;
+}
+
+/* Footer Styling */
+/* Footer Styling */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow effect at the top */
+    backdrop-filter: blur(10px); /* Apply a blur effect to the background */
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+}
+
+footer > p {
+    font-size: small;
+    margin-top: 10px;
+}
+
+/* Search Container Styling */
+.search-container {
+    width: 100%;
+    padding: 10px;
+    align-items: center;
+    position: relative;
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: visible; /* Ensure overflow is set to visible or auto */
+}
+
+/* Styles for the search input */
+#searchInput {
+    width: calc(100% - 40px); /* Adjust width to accommodate search icon */
+    padding: 8px 30px 8px 10px; /* Adjust padding for icon */
+    border: none;
+    border-radius: 30px;
+    outline: none;
+}
+
+/* Styles for the search icon */
+.search-icon {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.search-icon img {
+    width: 20px; /* Adjust the size of the search icon */
+    height: 20px;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 30px; /* Increase the width */
+    height: 30px; /* Increase the height */
+    background-image: url('static/search1.png'); /* Adjust the path to your image */
+    background-size: contain; /* Use 'contain' to fit the image within the specified dimensions */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center; /* Center the image within the element */
+    cursor: pointer;
+}
+
+/* Search Results Styling */
+#searchResults {
+    position: absolute;
+    top: calc(100% + 5px); /* Position below the search input */
+    left: 0;
+    width: 100%;
+    max-height: 200px; /* Limit the height of the search results */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: none; /* Initially hide the search results */
+}
+
+#searchResults.visible {
+    display: block; /* Show search results when visible class is added */
+}
+
+#searchResults ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#searchResults li {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    white-space: nowrap; /* Ensure items do not wrap */
+}
+
+#searchResults li:hover {
+    background-color: #f2f2f2;
+}
+
+#searchResults li img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Selected Currency Styling */
+#selectedCurrency {
+    text-align: center;
+    margin-bottom: 20px;
+    min-height: 30%;
+}
+
+#coinInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#coinImageContainer {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+#coinImage {
+    width: 20%;
+    height: auto;
+}
+
+.coin-info span {
+    margin-right: 5px;
+}
+
+#infoContainer {
+    text-align: left;
+}
+
+.info-item {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Chart Styling */
+.chart {
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Left Panel Styling */
+#leftPanel {
+    height: auto;
+    max-height: calc(100vh - 40px); /* Adjust the value based on your layout */
+    overflow-y: auto;
+}
+
+/* Right Panel Styling */
+#rightPanel {
+    flex-grow: 1;
+    display: flex;
+    height: auto;
+    max-height: calc(100vh - 40px); /* Adjust the value based on your layout */
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+}
+
+/* Individual Container Styling */
+.container {
+    flex-grow: 1;
+    max-width: 100%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    justify-content: center;
+    flex-direction: row;
+}
+
+/* Title Styling */
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px; /* Adjust as needed */
+}
+
+/* Coin Image Styling */
+.coin-image {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+/* Coin List Styling */
+#coinList {
+    padding: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #333; /* Dark Grey text color for good visibility */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Subtle text shadow for readability */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    overflow: hidden;
+    background-color: #add8e6; /* Blue background color */
+    border: 1px solid #999fa3; /* Darker blue border */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Hi Element Styling */
+#hi {
+    margin-right: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: rgba(245, 245, 245, 0.9); /* Light gray with transparency for glassy effect */
+    display: inline-block;
+    white-space: nowrap; /* Prevent the text from wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    position: relative; /* Positioning context for absolute positioning */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+
+    /* Animation settings */
+    animation: marquee 10s linear infinite; /* Adjust the duration and timing function as needed */
+}
+
+/* Keyframes for the marquee animation */
+@keyframes marquee {
+    0% { transform: translateX(0); } /* Start position */
+    100% { transform: translateX(-100%); } /* End position (off-screen left) */
+}
+/* Social Icons Styling */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px; /* Adjust spacing between icons */
+}
+
+/* Styling for individual icons (adjust based on your icon size and design) */
+.icon img {
+    width: 100%; /* Ensure icon fills its container */
+    height: 100%;
+    object-fit: cover; /* Preserve aspect ratio of icon */
+    border-radius: 50%; /* Make icons circular */
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+/* Hover effect for icons (optional) */
+.icon:hover img {
+    transform: scale(1.2); /* Scale up the icon on hover */
+}
+#he{
+    stroke-width: 50px; 
+    height: 50px;
+}
+/* Content Section Styling */
+.content-section {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+    backdrop-filter: blur(10px); /* Apply a blur effect to the background */
+    margin-bottom: 20px; /* Add space at the bottom */
+}
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px; /* Adjust as needed */
+}
+
+.content-section p {
+    text-align: justify;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333; /* Dark text color */
+}

@@ -1,0 +1,192 @@
+/* Global styles */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+:root {
+    --white-color: hsl(0, 0%, 100%);
+    --body-font: "Poppins", sans-serif;
+    --h1-font-size: 1.75rem;
+    --normal-font-size: 1rem;
+    --font-medium: 500;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body, input, button {
+    font-size: var(--normal-font-size);
+    font-family: var(--body-font);
+    background: rgba(159, 237, 246, 0.7);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+body {
+    color: var(--white-color);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+    font-size: var(--h1-font-size);
+    font-weight: var(--font-medium);
+    margin-bottom: 2rem;
+}
+
+/* Video background */
+#video1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Signup container */
+.signup-container {
+    text-align: left;
+    font-size: var(--normal-font-size);
+    font-family: var(--body-font);
+    margin-top: 50px;
+    padding: 20px;
+}
+
+/* Signup form */
+.signup-container form {
+    display: inline-block;
+    background-color: hsla(0, 0%, 10%, 0.1);
+    border: 2px solid var(--white-color);
+    padding: 2.5rem 1.5rem;
+    border-radius: 1rem;
+    backdrop-filter: blur(8px);
+}
+
+/* Style submit button */
+.signup-container form button[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  background-color: rgba(159, 237, 246, 0.7); /* Match the video background color */
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional box shadow for button */
+}
+
+.signup-container form button[type="submit"]:hover {
+  background-color: rgba(0, 86, 179, 0.7); /* Change the hover color to match the video */
+}
+
+/* Tidal wave effect */
+.signup-container form button[type="submit"]::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background-color: rgba(181, 192, 209, 0.7); /* Bright blue color */
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: wave 2s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes wave {
+  0% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0.8;
+  }
+  50% {
+      transform: translate(-50%, -50%) scale(1.2);
+      opacity: 0.5;
+  }
+  100% {
+      transform: translate(-50%, -50%) scale(1.5);
+      opacity: 0;
+  }
+}
+
+
+/* Input fields */
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 0;
+    border-bottom: 2px solid var(--white-color); /* Underline style */
+    background: transparent;
+    color: var(--white-color);
+    outline: none;
+    transition: border-color 0.3s ease; /* Transition for border color */
+}
+.signup-container form label {
+  /* Display labels as block-level elements */
+    text-align: left; /* Align label text to the left */
+    font-family: var(--body-font); /* Set custom font for labels */
+    font-size: var(--normal-font-size); /* Set font size for labels */
+    margin-bottom: 8px; /* Add spacing below each label */
+}
+/* Keep the underline visible even on focus */
+form input:focus {
+    border-bottom-color: var(--white-color); /* Maintain white color for underline */
+}
+
+/* Additional button styles */
+.button {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    border: 1px solid var(--white-color);
+    font-weight: var(--font-medium);
+    cursor: pointer;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.button a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    form {
+        width: 90%;
+    }
+}
+.back-to-login {
+  margin-top: 20px; /* Adjust spacing */
+  text-align: center; /* Center-align the text */
+  color: #fff; /* Text color (white) */
+}
+
+.back-to-login a {
+  color: #a8d1fd; /* Link color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.back-to-login a:hover {
+  color: #fff; /* Hover color (white) */
+}

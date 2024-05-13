@@ -1,0 +1,39 @@
+<!-- templates/registration/signup.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static%}
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'signup.css' %}">
+    <style>
+        span {
+            display: none;
+        }
+        ul{
+            display: none;
+        }
+    </style> 
+
+</head>
+<body>
+   
+    <video id="video1" autoplay muted loop>
+        <source src="{% static 'video1.mp4' %}" type="video/mp4" />
+    </video>
+    <div class="signup-container">
+    
+    <form method="post">
+        <h1 class="head">Sign Up</h1>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Sign Up</button>
+        <p class="back-to-login">
+            Already have an account? <a href="{% url 'client:login' %}">Go back to login</a>
+        </p>
+    </form>
+</div>
+    
+</body>
+</html>

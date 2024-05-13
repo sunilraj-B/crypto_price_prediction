@@ -1,0 +1,151 @@
+{% load static %}
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crypton</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'update.css' %}">
+    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'idecss.css' %}"> {% endcomment %}
+    
+    <!-- <link rel="stylesheet" href="idecss.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
+</head>
+<body>
+    <div id="video-container">
+        <video autoplay muted loop id="bg-video">
+            <source src="{%static 'video1.mp4'%}" type="video/mp4">
+            <!-- Provide fallback content here -->
+            Your browser does not support HTML5 video.
+        </video>
+    
+<header>
+    {% comment %} <img src="C:\Users\sunil\Documents\sunildjangoprojects\firstproject\templates\cosmos-atom-logo.png" alt="Icon"> {% endcomment %}
+    <h1><b>Crypton Technologies</b></h1>
+    <div class="navbar">
+        <a href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+            <a href="#"><i class="fa fa-file"></i> About</a>
+            <a href="#"><i class="fa fa-cogs"></i> Services</a>
+            <a href="#"><i class="fa fa-phone"></i> Contact</a>
+            <a href ="{% url 'client:table'%}">Crypto-table</a>
+            {% comment %} <li><a href="{% url 'client:table' %}">CryptoPrice Wall</a></li> {% endcomment %}
+            <a href="{% url 'client:select_crypto' %}" id="futurePredictionsLink"><i class="fa fa-line-chart"></i> Future Predictions</a>
+            <a href="{% url 'client:profile' %}"  id="profileLink"><i class="fa fa-user"></i> User-Profile</a>
+        </ul>
+        <ul>
+            <li><a href="{% url 'client:login'%}"><i class="fa fa-sign-out"></i> Logout</a></li>
+        </ul>
+    </div>
+</header>
+
+        
+<marquee id="coinList" direction="left" behavior="scroll" scrollamount="15">Loading...</marquee>
+<!-- <section class="hero">
+    <h2>Welcome to My Project</h2>
+    <p>A brief description of your project.</p>
+       <a href="#" class="cta-button">Get Started</a>
+</section> -->
+
+<!-- Cryptocurrency Dashboard content starts here -->
+<div id="container">
+    <!-- Left Panel -->
+    <div id="leftPanel">
+        <!-- Content for the left panel -->
+        <h2>Top 100 Currencies</h2>
+        <div id="currencyContainer">
+            <table id="currencyMenu" class="currency-menu">
+                <thead>
+                <tr class="table-header">
+                    <th class="serial-number">S.No.</th>
+                    <th class="coin-info">Currency</th>
+                    <th class="coin-info">Coin Image</th>
+                    <th class="coin-info">Market Cap</th>
+                </tr>
+                </thead>
+                <tbody id="currencyList" style="cursor: pointer;">
+                <!-- Currency list items will be added dynamically here -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- Right Panel -->
+    <div id="rightPanel">
+        <div class="container">
+            <h2>Cryptocurrency Price Prediction</h2>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for a cryptocurrency">
+                <div class="search-icon">
+                    <img src="{% static 'search1.png' %}" alt="Search Icon">
+                </div>
+                <ul id="searchResults"></ul>
+            </div>
+            <div id="selectedCurrency">
+                <!-- Content for selected currency -->
+            </div>
+            <div class="charts-container">
+                <div id="chartContainer" class="chart"></div>
+                <div id="comparisonChartContainer" class="chart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2>About Us</h2>
+    <p>
+        We are a dedicated team of cryptocurrency enthusiasts and data scientists, passionate about exploring the potential of blockchain technology and helping individuals make informed investment decisions. Our goal is to provide accurate and reliable price predictions for various cryptocurrencies, utilizing advanced prediction models and machine learning algorithms.
+        <br><br>
+        <u>Our Team Members:</u>
+        <br><br>
+        1.Akilan K: Documentation and Presentation
+        <br><br>
+        
+        2.Sunilraj B: Backend and Functionalities
+        <br><br>
+        
+        3.Sakthivel M: Frontend Frameworks and UI
+        <br><br>
+        
+        Together, we form a well-rounded team with a blend of technical expertise, data analysis skills, and market insights. By leveraging our collective knowledge and utilizing cutting-edge prediction models, we strive to deliver reliable cryptocurrency price predictions that can assist investors in making informed decisions in the dynamic and ever-changing crypto market.
+    </p>
+</div>
+<footer>
+    <div class="social-icons">
+        <div>
+            <img class="icon" src="https://cdn3.iconfinder.com/data/icons/2018-social-media-logotypes/1000/2018_social_media_popular_app_logo_instagram-256.png"></img>
+        </div>
+        <div>
+            <img class="icon" src="https://images-ext-2.discordapp.net/external/xXNauE9JrcYLj3bbGP663zkGDa-l-oAoOmTeUKGYarI/https/cdn3.iconfinder.com/data/icons/2018-social-media-logotypes/1000/2018_social_media_popular_app_logo-whatsapp-256.png?width=308&height=308"></img>
+        </div>
+        <div>
+            <img class="icon" src="https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-256.png"></img>
+        </div>
+        <div>
+            <img class="icon" src="https://images-ext-2.discordapp.net/external/01t1pvJqAf2kWiitIGDa0TLfAB1FHd-gDpf1oSXz5G8/https/cdn1.iconfinder.com/data/icons/social-media-2285/512/Colored_Facebook3_svg-256.png?width=308&height=308"></img>
+        </div>
+    </div>
+    <!-- <div class="contact-details">
+            <p>info@example.com</p>
+            <p>+1 123-456-7890</p>
+    </div> -->
+    <p>&copy; 2023 My Project. All rights reserved.</p>
+</footer>
+
+<!-- Include JavaScript code from the Cryptocurrency Dashboard -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/regression/dist/regression.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@3.28.0/dist/apexcharts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% comment %} <script src="idejsrec1.js"></script> {% endcomment %}
+<script src="{% static 'ide.js' %}"></script>
+
+
+</body>
+</html>

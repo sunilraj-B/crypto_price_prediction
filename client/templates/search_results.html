@@ -1,0 +1,21 @@
+<!-- crypto_predictor/templates/search_results.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    
+</head>
+<body>
+
+<div id="searchResults">
+    {% for coin in matched_currencies %}
+        <div id="hi">
+            <p>Symbol: {{ coin.symbol }}</p>
+            <p>Name: {{ coin.name }}</p>
+        </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
