@@ -30,7 +30,11 @@ SECRET_KEY = 'django-insecure-25l$3gpoha((dd$(54-&)pv3tgx!eba_qt!ng&#(wo*+j!%7_-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'crypto-price-prediction-osvi.onrender.com',  # Add your Render domain here
+]
 
 
 # Application definition
