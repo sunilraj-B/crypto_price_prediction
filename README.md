@@ -65,5 +65,7 @@ Install dependencies:
 
 ```bash
 pip install -r requirements.txt
+python manage.py migrate
+pythopn manage.py runserver
 
 
