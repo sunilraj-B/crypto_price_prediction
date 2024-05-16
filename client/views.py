@@ -160,15 +160,15 @@ def predict_crypto_prices(request):
             print(f"Predicted Price on {date}: ${future_predictions[i]:.2f}")
 
         # Save prediction history to the database
-        current_user = request.user
-        for date, predicted_price in zip(future_dates, future_predictions):
-            prediction = Prediction(
-                user=current_user,
-                coin=crypto_symbol.upper(),
-                predicted_price=predicted_price,
-                predicted_time=date
-            )
-            prediction.save()
+        # current_user = request.user
+        # for date, predicted_price in zip(future_dates, future_predictions):
+        #     prediction = Prediction(
+        #         user=current_user,
+        #         coin=crypto_symbol.upper(),
+        #         predicted_price=predicted_price,
+        #         predicted_time=date
+        #     )
+        #     prediction.save()
 
         # Prepare data for rendering in the template
         ensemble_models = [str(model) for model in model_names]
