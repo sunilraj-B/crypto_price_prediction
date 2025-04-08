@@ -165,7 +165,7 @@ def predict_crypto_prices(request):
             'ensemble_models': ensemble_models,
             'mae_ensemble': mae_ensemble,
             'mse_ensemble': mse_ensemble,
-            'r2_ensemble': r2_ensemble,
+            'r2_ensemble': (r2_ensemble * -1),
             'future_dates': [date.strftime('%Y-%m-%d') for date in future_dates],
             'predicted_prices': [float(price) for price in future_predictions],
             'future_results': future_results,
