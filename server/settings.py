@@ -102,7 +102,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-DATABASES["default"]=dj_database_url.parse("postgresql://sunil_db_1_user:kJUFF9Beh3XuT9wIRjKFldUDZJHDIUsb@dpg-cvqj55adbo4c73djbmh0-a.oregon-postgres.render.com/sunil_db_1")
+DATABASES["default"]=dj_database_url.parse("postgresql://database_1_npfj_user:MGeSan8OEoIVP8uwtGNb4E2nR0R7JM6Z@dpg-d0mknqjuibrs73epm4h0-a.oregon-postgres.render.com/database_1_npfj")
 
 
 
